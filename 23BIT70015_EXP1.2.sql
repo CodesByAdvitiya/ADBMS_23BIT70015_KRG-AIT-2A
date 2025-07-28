@@ -49,3 +49,12 @@ WHERE dept_id IN (
     GROUP BY dept_id
     HAVING COUNT(subject_id) >= 3
 );
+
+/* 7. Granting SELECT-Only Access to a User on the Subjects Table in SQL Server */
+CREATE LOGIN Adi WITH PASSWORD = 'Test@123';
+CREATE USER Miku FOR LOGIN Adi;
+GRANT SELECT ON Subjects TO Miku;
+
+EXECUTE AS USER = 'Miku';
+SELECT * FROM Subjects;
+REVERT;
